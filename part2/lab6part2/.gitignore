@@ -1,0 +1,8 @@
+sample_program.s.machine
+registerFile.vcd
+registerFile_tb.vvp
+cpu_wavedata.vcd
+cpu_tb.vvp
+CO224Assembler
+alu_tb.vvp
+alu_tb.vcd
