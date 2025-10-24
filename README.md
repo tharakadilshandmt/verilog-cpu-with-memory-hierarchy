@@ -1,4 +1,4 @@
-# 8-bit Single-Cycle Processor with Memory Hierarchy (CO224 - Computer Architecture)
+# 8-bit Single-Cycle Processor with Memory Hierarchy
 
 ## Repository Name
 
