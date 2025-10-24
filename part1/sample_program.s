@@ -1,0 +1,7 @@
+loadi 0 0x05
+loadi 1 0x03
+loadi 2 0x01
+swi 0 0x00 //
+swd 1 2 //
+lwi 3 0x00 //
+lwd 5 2 //

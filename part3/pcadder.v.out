@@ -1,0 +1,116 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000019973672ad0 .scope module, "pcadder" "pcadder" 2 2;
+ .timescale -9 -12;
+    .port_info 0 /OUTPUT 32 "PC";
+    .port_info 1 /INPUT 1 "CLK";
+    .port_info 2 /INPUT 1 "RESET";
+    .port_info 3 /INPUT 8 "RD_OFFSET";
+    .port_info 4 /INPUT 1 "BRANCH";
+    .port_info 5 /INPUT 1 "JUMP";
+    .port_info 6 /INPUT 1 "ZERO";
+    .port_info 7 /INPUT 1 "CLKPAUSE";
+    .port_info 8 /INPUT 1 "BUSYWAIT";
+o00000199736ab038 .functor BUFZ 1, C4<z>; HiZ drive
+o00000199736ab278 .functor BUFZ 1, C4<z>; HiZ drive
+L_000001997378b490 .functor AND 1, o00000199736ab038, o00000199736ab278, C4<1>, C4<1>;
+v00000199736730d0_0 .net "BEQADDRESS", 31 0, L_00000199736f0660;  1 drivers
+v0000019973672c60_0 .net "BEQSELECT", 0 0, L_000001997378b490;  1 drivers
+v0000019973672d00_0 .net "BRANCH", 0 0, o00000199736ab038;  0 drivers
+o00000199736ab068 .functor BUFZ 1, C4<z>; HiZ drive
+v0000019973672da0_0 .net "BUSYWAIT", 0 0, o00000199736ab068;  0 drivers
+o00000199736ab098 .functor BUFZ 1, C4<z>; HiZ drive
+v00000199736a4540_0 .net "CLK", 0 0, o00000199736ab098;  0 drivers
+o00000199736ab0c8 .functor BUFZ 1, C4<z>; HiZ drive
+v00000199736a45e0_0 .net "CLKPAUSE", 0 0, o00000199736ab0c8;  0 drivers
+o00000199736ab0f8 .functor BUFZ 1, C4<z>; HiZ drive
+v00000199736a4680_0 .net "JUMP", 0 0, o00000199736ab0f8;  0 drivers
+v00000199736f00c0_0 .net "NEXTPC", 31 0, L_00000199736ef8a0;  1 drivers
+v00000199736f0520_0 .var "PC", 31 0;
+v00000199736ef940_0 .var "PCPLUS4", 31 0;
+o00000199736ab1b8 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+v00000199736eff80_0 .net/s "RD_OFFSET", 7 0, o00000199736ab1b8;  0 drivers
+o00000199736ab1e8 .functor BUFZ 1, C4<z>; HiZ drive
+v00000199736f0020_0 .net "RESET", 0 0, o00000199736ab1e8;  0 drivers
+v00000199736f03e0_0 .net/s "SHIFTLEFTADDRESS", 31 0, L_00000199736f05c0;  1 drivers
+v00000199736f0200_0 .var/s "SIGNEXTNDVALUE", 31 0;
+v00000199736f0160_0 .net "ZERO", 0 0, o00000199736ab278;  0 drivers
+v00000199736f0480_0 .net *"_ivl_0", 31 0, L_00000199736f0700;  1 drivers
+v00000199736f02a0_0 .net *"_ivl_2", 29 0, L_00000199736f0340;  1 drivers
+L_00000199736f8878 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v00000199736efa80_0 .net *"_ivl_4", 1 0, L_00000199736f8878;  1 drivers
+E_00000199736a8cc0 .event posedge, v00000199736a4540_0;
+E_00000199736a9540 .event anyedge, v00000199736f0520_0;
+E_00000199736a9580 .event anyedge, v00000199736eff80_0;
+L_00000199736f0340 .part v00000199736f0200_0, 0, 30;
+L_00000199736f0700 .concat [ 2 30 0 0], L_00000199736f8878, L_00000199736f0340;
+L_00000199736f05c0 .delay 32 (2000,2000,2000) L_00000199736f05c0/d;
+L_00000199736f05c0/d .arith/sum 32, v00000199736ef940_0, L_00000199736f0700;
+L_00000199736f0660 .functor MUXZ 32, v00000199736ef940_0, L_00000199736f05c0, L_000001997378b490, C4<>;
+L_00000199736ef8a0 .functor MUXZ 32, L_00000199736f0660, L_00000199736f05c0, o00000199736ab0f8, C4<>;
+    .scope S_0000019973672ad0;
+T_0 ;
+    %wait E_00000199736a9580;
+    %load/vec4 v00000199736eff80_0;
+    %parti/s 1, 7, 4;
+    %cmpi/e 0, 0, 1;
+    %jmp/0xz  T_0.0, 4;
+    %pushi/vec4 0, 0, 24;
+    %load/vec4 v00000199736eff80_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v00000199736f0200_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v00000199736eff80_0;
+    %parti/s 1, 7, 4;
+    %cmpi/e 1, 0, 1;
+    %jmp/0xz  T_0.2, 4;
+    %pushi/vec4 16777215, 0, 24;
+    %load/vec4 v00000199736eff80_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v00000199736f0200_0, 0;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0000019973672ad0;
+T_1 ;
+    %wait E_00000199736a9540;
+    %delay 1000, 0;
+    %load/vec4 v00000199736f0520_0;
+    %addi 4, 0, 32;
+    %assign/vec4 v00000199736ef940_0, 0;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0000019973672ad0;
+T_2 ;
+    %wait E_00000199736a8cc0;
+    %load/vec4 v00000199736f0020_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v00000199736f0520_0, 1000;
+    %jmp T_2.1;
+T_2.0 ;
+    %load/vec4 v0000019973672da0_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.2, 8;
+    %load/vec4 v00000199736f00c0_0;
+    %assign/vec4 v00000199736f0520_0, 1000;
+T_2.2 ;
+T_2.1 ;
+    %jmp T_2;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "pcadder.v";
